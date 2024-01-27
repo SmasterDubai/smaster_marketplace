@@ -3422,7 +3422,10 @@ body {
 /* Medium devices (tablets, less than and equal to 991px) */
 @media (max-width: 991px) {
   /* 7.1 Top-Header */
-  .primary-nav, .secondary-nav {
+  .primary-nav{
+    display: none;
+  }
+  .secondary-nav {
     text-align: center;
     float: none; }
   /* 7.2 Mid-Header */
@@ -3470,6 +3473,10 @@ body {
   /*--------------------------------------------------------------
 9.0 Home-Page:
 --------------------------------------------------------------*/
+.primary-nav{
+    display: none;
+    visibility: hidden;
+}
   /* 9.1 Newsletter-Modal */
   .newsletter-image {
     display: block;
@@ -3531,14 +3538,38 @@ body {
 /* Extra small devices (portrait phones, less than and equal to 575px) */
 @media (max-width: 575px) {
   /* 15.0 404-page  */
+  .primary-nav{
+    display: none;
+    visibility: hidden;
+  }
   .align-center h1 {
     font-size: 155px; }
   /* 7.2 Mid-Header  */
-  .brand-logo, .mid-nav {
-    text-align: center; }
+ .mid-nav {
+    text-align: right;
+
+  }
   .mid-nav > li {
     margin-left: 0; }
-  .item-counter {
-    left: 90px;
-    top: 8px; } }
+    .item-counter {
+        color: #ffffff;
+        font-size: 12px;
+        line-height: 26px;
+        font-weight: 700;
+        position: absolute;
+        background-color: #003459;
+        width: 26px;
+        left: 17px;
+        top: -15px;
+        text-align: center;
+        border-radius: 50%; }
+
+ .brand-logo {
+    float: left;
+ }
+
+
+
+
+}
 

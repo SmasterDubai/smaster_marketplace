@@ -3,7 +3,7 @@
 <div class="row product-container grid-style">
 
     @foreach ($categoryProducts as $product)
-        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+        <div class="product-item col-lg-4 col-md-6 col-sm-6 col-xs-6">
             <div class="item">
                 <div class="image-container">
                     <a class="item-img-wrapper-link" href="{{ url('product/' . $product['id']) }}">

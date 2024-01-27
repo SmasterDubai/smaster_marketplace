@@ -390,16 +390,16 @@ $(function () {
                 navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
                 responsive: {
                     0: {
-                        items: 1,
+                        items: 2,
                     },
                     768: {
-                        items: itemPerLine - 2,
+                        items: 4, //removed itemPerLine - 2
                     },
                     991: {
-                        items: itemPerLine - 1,
+                        items: 6, // removed itemPerLine - 1
                     },
                     1200: {
-                        items: itemPerLine,
+                        items: 6,
                     },
                 }
             });
@@ -427,16 +427,16 @@ $(function () {
                 navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
                 responsive: {
                     0: {
-                        items: 1,
-                    },
-                    768: {
                         items: 2,
                     },
+                    768: {
+                        items: 4, // removed 2
+                    },
                     991: {
-                        items: itemPerLine -1,
+                        items: 6, //removed itemPerLine -1
                     },
                     1200: {
-                        items: itemPerLine,
+                        items: 6, // removed itemPerLine
                     },
                 }
             });
@@ -476,16 +476,16 @@ $(function () {
             navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
             responsive: {
                 0: {
-                    items: 1,
+                    items: 2,
                 },
                 768: {
-                    items: 3,
+                    items: 4, // removed
                 },
                 991: {
-                    items: itemPerLine,
+                    items: 6, // removed itemPerLine
                 },
                 1200: {
-                    items: itemPerLine,
+                    items: 6, // removed itemPerLine
                 },
             }
         });
@@ -692,7 +692,7 @@ $(function () {
      * Attach Click event to Grid & List
      */
 
-     $shopProductContainer.addClass('grid-style'); 
+     $shopProductContainer.addClass('grid-style');
      $shopProductContainer.removeClass('list-style');
 
      const attachClickGridAndList = function () {

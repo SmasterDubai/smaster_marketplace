@@ -19,7 +19,7 @@ $sections = \App\Models\Section::sections();
                         Telephone: +201255845857</a>
                     </li>
                     <li>
-                        <a href="mailto:info@multi-vendore-commerce.com">
+                        <a href="mailto:info@smaster.ae">
                         <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
                         E-mail: info@smaster.ae
                         </a>
@@ -29,8 +29,6 @@ $sections = \App\Models\Section::sections();
             <nav>
                 <ul class="secondary-nav g-nav">
                     <li>
-
-
 
                         <a>
                             {{-- If the user is authenticated/logged in, show 'My Account', if not, show 'Login/Register' --}}
@@ -132,6 +130,7 @@ $sections = \App\Models\Section::sections();
     <div class="full-layer-mid-header">
         <div class="container">
             <div class="row clearfix align-items-center">
+
                 <div class="col-lg-3 col-md-9 col-sm-6">
                     <div class="brand-logo text-lg-center">
 
@@ -139,13 +138,13 @@ $sections = \App\Models\Section::sections();
                         <a href="{{ url('/') }}">
 
 
-                            <img src="{{ asset('front/images/main-logo/main-logo.png') }}" alt="Multi-vendor E-commerce Application" class="app-brand-logo">
+                            <img src="{{ asset('front/images/main-logo/smaster_logo.png') }}" alt="Smaster_logo" class="app-brand-logo" width="50px;" height="50px;">
                         </a>
                     </div>
                 </div>
+
+
                 <div class="col-lg-6 u-d-none-lg">
-
-
 
                     {{-- Website Search Form (to search for all website products) --}}
                     <form class="form-searchbox" action="{{ url('/search-products') }}" method="get">
@@ -174,7 +173,7 @@ $sections = \App\Models\Section::sections();
 
 
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                     <nav>
                         <ul class="mid-nav g-nav">
                             <li class="u-d-none-lg">
@@ -195,6 +194,7 @@ $sections = \App\Models\Section::sections();
         </div>
     </div>
     <!-- Mid-Header /- -->
+
     <!-- Responsive-Buttons -->
     <div class="fixed-responsive-container">
         <div class="fixed-responsive-wrapper">

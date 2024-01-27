@@ -1900,7 +1900,7 @@ return array(
     'Illuminate\\Database\\Connectors\\MySqlConnector' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php',
     'Illuminate\\Database\\Connectors\\PostgresConnector' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Connectors/PostgresConnector.php',
     'Illuminate\\Database\\Connectors\\SQLiteConnector' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Connectors/SQLiteConnector.php',
-    'Illuminate\\Database\\Connectors\\SqlServerConnector' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Connectors/SqlServerConnector.php',
+    'Illuminate\\Database\\Connectors\\SqlServerConnector' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Connectors/SqlServer',
     'Illuminate\\Database\\Console\\DatabaseInspectionCommand' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Console/DatabaseInspectionCommand.php',
     'Illuminate\\Database\\Console\\DbCommand' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Console/DbCommand.php',
     'Illuminate\\Database\\Console\\DumpCommand' => $vendorDir . '/laravel/framework/src/Illuminate/Database/Console/DumpCommand.php',

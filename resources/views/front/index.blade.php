@@ -1,4 +1,4 @@
-{{-- This page is rendered by index() method in Front/IndexController.php --}}
+{{-- This is the default home page and is rendered by index() method in Front/IndexController.php as --}}
 @extends('front.layout.layout')
 
 
@@ -221,7 +221,7 @@
                                                 @else {{-- if there's no discount on the price, show the original price --}}
                                                     <div class="price-template">
                                                         <div class="item-new-price">
-                                                            Rs . {{ $product['product_price'] }}
+                                                            AED {{ $product['product_price'] }}
                                                         </div>
                                                     </div>
                                                 @endif
@@ -293,16 +293,16 @@
                                                 @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                     <div class="price-template">
                                                         <div class="item-new-price">
-                                                            Rs . {{ $getDiscountPrice }}
+                                                            AED {{ $getDiscountPrice }}
                                                         </div>
                                                         <div class="item-old-price">
-                                                            Rs . {{ $product['product_price'] }}
+                                                            AED {{ $product['product_price'] }}
                                                         </div>
                                                     </div>
                                                 @else {{-- if there's no discount on the price, show the original price --}}
                                                     <div class="price-template">
                                                         <div class="item-new-price">
-                                                            Rs . {{ $product['product_price'] }}
+                                                            AED {{ $product['product_price'] }}
                                                         </div>
                                                     </div>
                                                 @endif
@@ -374,16 +374,16 @@
                                                 @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                     <div class="price-template">
                                                         <div class="item-new-price">
-                                                            Rs . {{ $getDiscountPrice }}
+                                                            AED {{ $getDiscountPrice }}
                                                         </div>
                                                         <div class="item-old-price">
-                                                            Rs . {{ $product['product_price'] }}
+                                                            AED {{ $product['product_price'] }}
                                                         </div>
                                                     </div>
                                                 @else {{-- if there's no discount on the price, show the original price --}}
                                                     <div class="price-template">
                                                         <div class="item-new-price">
-                                                            Rs . {{ $product['product_price'] }}
+                                                            AED {{ $product['product_price'] }}
                                                         </div>
                                                     </div>
                                                 @endif
