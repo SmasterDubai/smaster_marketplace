@@ -50,12 +50,12 @@
                     @endforeach
                     <tr>
                         <td colspan="5" align="right">Shipping Charges</td>
-                        <td>INR {{ $orderDetails['shipping_charges'] }}</td>
+                        <td>AED {{ $orderDetails['shipping_charges'] }}</td>
                     </tr>
                     <tr>
                         <td colspan="5" align="right">Coupon Discount</td>
                         <td>
-                            INR
+                            AED
                             @if ($orderDetails['coupon_amount'] > 0)
                                 {{ $orderDetails['coupon_amount'] }}
                             @else
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <td colspan="5" align="right">Grand Total</td>
-                        <td>INR {{ $orderDetails['grand_total'] }}</td>
+                        <td>AED {{ $orderDetails['grand_total'] }}</td>
                     </tr>
                 </table>
             </td></tr>
@@ -99,7 +99,7 @@
                 </table>
             </td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>For any queries, you can contact us at <a href="mailto:info@MultiVendorEcommerceApplication.com.eg">info@MultiVendorEcommerceApplication.com.eg</a></td></tr>
+            <tr><td>For any queries, you can contact us at <a href="mailto:info@smaster.ae">info@smaster.ae</a></td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr><td>Regards,<br>Team Smaster Marketplace</td></tr>
             <tr><td>&nbsp;</td></tr>

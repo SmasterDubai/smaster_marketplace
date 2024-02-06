@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // Render User Login/Register page (front/users/login_register.blade.php)    
+    // Render User Login/Register page (front/users/login_register.blade.php)
     public function loginRegister() {
         return view('front.users.login_register');
     }
 
-    // User Registration (in front/users/login_register.blade.php) <form> submission using an AJAX request. Check front/js/custom.js    
+    // User Registration (in front/users/login_register.blade.php) <form> submission using an AJAX request. Check front/js/custom.js
     public function userRegister(Request $request) {
         if ($request->ajax()) { // if the request is coming via an AJAX call
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
 
-            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators    
+            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
                 // the 'name' HTML attribute of the request (the array key of the $request array) (ATTRIBUTE) => Validation Rules
                 'name'     => 'required|string|max:100',
@@ -37,7 +37,7 @@ class UserController extends Controller
             ]);
 
 
-            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
             // dd($validator->messages());
             // echo '<pre>', var_dump($validator->messages()), '</pre>';
             // exit;
@@ -51,7 +51,7 @@ class UserController extends Controller
                 $user->mobile   = $data['mobile']; // $data['mobile'] comes from the 'data' object sent from inside the $.ajax() method in front/js/custom.js file
                 $user->email    = $data['email'];  // $data['email']  comes from the 'data' object sent from inside the $.ajax() method in front/js/custom.js file
                 $user->password = bcrypt($data['password']); // storing the HASH-ed password (not the original password) in the database    // bcrypt(): https://laravel.com/docs/9.x/helpers#method-bcrypt    // $data['password'] comes from the 'data' object sent from inside the $.ajax() method in front/js/custom.js file
-                $user->status   = 0; // 0 means that the user is inactive/disabled/deactivated. After they click on the link in the 'Confirmation Email' sent to them, they become active/enabled/activated i.e. `status` is one 1    
+                $user->status   = 0; // 0 means that the user is inactive/disabled/deactivated. After they click on the link in the 'Confirmation Email' sent to them, they become active/enabled/activated i.e. `status` is one 1
 
                 $user->save();
 
@@ -67,7 +67,7 @@ class UserController extends Controller
                     'code'   => base64_encode($data['email']) // We base64 code the user's $email and send it as a Route Parameter from resources/views/emails/confirmation.blade.php to the 'user/confirm/{code}' route in web.php, then it gets base64 de-coded again in confirmUser() method in Front/UserController.php    // We will use the opposite: base64_decode() in the confirmUser() method to decode the encoded string (encode X decode)
                 ];
                 \Illuminate\Support\Facades\Mail::send('emails.confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.confirmation' is the resources/views/emails/confirmation.blade.php file that will be sent as an email    // We pass in all the variables that confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
-                    $message->to($email)->subject('Confirm your Multi-vendor E-commerce Application Account');
+                    $message->to($email)->subject('Confirm your Smaster Marketplace Account');
                 });
 
                 // Redirect user back with a success message
@@ -82,7 +82,7 @@ class UserController extends Controller
 
 
                 /*
-                // Send an SMS using an SMS API and cURL    
+                // Send an SMS using an SMS API and cURL
                 $message = 'Dear customer, you have successfully registered with Multi-vendor E-commerce Application. Login to your account to access orders, addresses and available offers';
                 $mobile = $data['mobile']; // the user's mobile that they entered while submitting the registration form
                 \App\Models\Sms::sendSms($message, $mobile); // Send the SMS
@@ -92,19 +92,19 @@ class UserController extends Controller
                 // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'   => 'error',
-                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
                 ]);
             }
         }
     }
 
-    // User Login (in front/users/login_register.blade.php) <form> submission using an AJAX request. Check front/js/custom.js    
+    // User Login (in front/users/login_register.blade.php) <form> submission using an AJAX request. Check front/js/custom.js
     public function userLogin(Request $request) {
         if ($request->ajax()) { // if the request is coming via an AJAX call
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
 
 
-            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators    
+            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
                 // the 'name' HTML attribute of the request (the array key of the $request array) (ATTRIBUTE) => Validation Rules
                 'email'    => 'required|email|max:150|exists:users', // 'exists:users'    means it must already exist in the `users` table    // exists:table,column: https://laravel.com/docs/9.x/validation#rule-exists
@@ -112,7 +112,7 @@ class UserController extends Controller
             ]);
 
 
-            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
             // dd($validator->messages());
             // echo '<pre>', var_dump($validator->messages()), '</pre>';
             // exit;
@@ -137,7 +137,7 @@ class UserController extends Controller
                     }
 
 
-                    // Update the user's Cart (the `user_id` column in `carts` table) with their `user_id` (because before login, user's orders in the Cart were stored only using the session (and `user_id` is zero 0) (check the cartAdd() method in Front/ProductsController.php))    
+                    // Update the user's Cart (the `user_id` column in `carts` table) with their `user_id` (because before login, user's orders in the Cart were stored only using the session (and `user_id` is zero 0) (check the cartAdd() method in Front/ProductsController.php))
                     if (!empty(Session::get('session_id'))) {
                         $user_id    = Auth::user()->id;
                         $session_id = Session::get('session_id');
@@ -145,7 +145,7 @@ class UserController extends Controller
                         \App\Models\Cart::where('session_id', $session_id)->update(['user_id' => $user_id]);
                     }
 
- 
+
                     // redirect user to the Cart cart.blade.php page
                     $redirectTo = url('cart'); // Check that route in web.php
 
@@ -167,13 +167,13 @@ class UserController extends Controller
                 // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'   => 'error',
-                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
                 ]);
             }
         }
     }
 
-    // User logout (This route is accessed from Logout tab in the drop-down menu in the header (in front/layout/header.blade.php))    
+    // User logout (This route is accessed from Logout tab in the drop-down menu in the header (in front/layout/header.blade.php))
     public function userLogout() {
         Auth::logout(); // Logging Out: https://laravel.com/docs/9.x/authentication#logging-out
 
@@ -187,9 +187,9 @@ class UserController extends Controller
 
 
 
-    // User account Confirmation E-mail which contains the 'Activation Link' to activate the user account (in resources/views/emails/confirmation.blade.php, using Mailtrap)    
+    // User account Confirmation E-mail which contains the 'Activation Link' to activate the user account (in resources/views/emails/confirmation.blade.php, using Mailtrap)
     public function confirmAccount($code) { // {code} is the base64 encoded user's 'Activation Code' sent to the user in the Confirmation E-mail with which they have registered, which is received as a Route Parameters/URL Paramters in the 'Activation Link': https://laravel.com/docs/9.x/routing#required-parameters    // this route is requested (accessed/opened) from inside the mail sent to user (in resources/views/emails/confirmation.blade.php)
-        $email = base64_decode($code); // $code is the encoded $email (check userRegister() method in UserController.php)    // we use the opposite (base64_decode()) of what we used in the userRegister() (base_64encode) 
+        $email = base64_decode($code); // $code is the encoded $email (check userRegister() method in UserController.php)    // we use the opposite (base64_decode()) of what we used in the userRegister() (base_64encode)
         // dd($email);
 
         // For Security Reasons, check if that decoded user's $email exists in the `users` database table
@@ -205,7 +205,7 @@ class UserController extends Controller
                     'status' => 1
                 ]);
 
-                // Send a Welcome Email to user after confirmation (clicking on the 'Activation Link' inside the Confirmation Email)    // HELO / Mailtrap / MailHog: https://laravel.com/docs/9.x/mail#mailtrap    
+                // Send a Welcome Email to user after confirmation (clicking on the 'Activation Link' inside the Confirmation Email)    // HELO / Mailtrap / MailHog: https://laravel.com/docs/9.x/mail#mailtrap
 
                 // The email message data/variables that will be passed in to the email view
                 $messageData = [
@@ -231,14 +231,14 @@ class UserController extends Controller
 
 
 
-    // User Forgot Password Functionality (this route is accessed from the <a> tag in front/users/login_register.blade.php through a 'GET' request, and through a 'POST' request when the HTML Form is submitted in front/users/forgot_password.blade.php))    
+    // User Forgot Password Functionality (this route is accessed from the <a> tag in front/users/login_register.blade.php through a 'GET' request, and through a 'POST' request when the HTML Form is submitted in front/users/forgot_password.blade.php))
     public function forgotPassword(Request $request) { // We used match() method to use get() to render the front/users/forgot_password.blade.php page, and post() when the HTML Form in the same page is submitted    // The POST request is from an AJAX request. Check front/js/custom.js
         if ($request->ajax()) { // if the 'POST' request is coming from an AJAX call (if the Forgot Password HTML Form is submitted (in front/users/forgot_password.blade.php))
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
             // dd($data);
 
 
-            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators    
+            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
                 'email'    => 'required|email|max:150|exists:users', // 'exists:users'    means it must already exist in the `users` table    // exists:table,column: https://laravel.com/docs/9.x/validation#rule-exists
 
@@ -262,7 +262,7 @@ class UserController extends Controller
                 // Get user details
                 $userDetails = \App\Models\User::where('email', $data['email'])->first()->toArray();
 
-                // Send an email to the user to get the new password (reset their password)    // HELO / Mailtrap / MailHog: https://laravel.com/docs/9.x/mail#mailtrap    
+                // Send an email to the user to get the new password (reset their password)    // HELO / Mailtrap / MailHog: https://laravel.com/docs/9.x/mail#mailtrap
                 $email = $data['email']; // the user's email that they entered while submitting the registration form
 
                 // The email message data/variables that will be passed in to the email view
@@ -287,7 +287,7 @@ class UserController extends Controller
                 // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'   => 'error',
-                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (check front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
                 ]);
             }
 
@@ -300,13 +300,13 @@ class UserController extends Controller
 
 
 
-    // Render User User Account page with 'GET' request (front/users/user_account.blade.php), or the HTML Form submission in the same page with 'POST' request using AJAX (to update user details). Check front/js/custom.js    
+    // Render User User Account page with 'GET' request (front/users/user_account.blade.php), or the HTML Form submission in the same page with 'POST' request using AJAX (to update user details). Check front/js/custom.js
     public function userAccount(Request $request) {
         if ($request->ajax()) { // if the 'POST' request is coming from an AJAX call (update user details)
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
 
 
-            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators    
+            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
                 // the 'name' HTML attribute of the request (the array key of the $request array) (ATTRIBUTE) => Validation Rules
                 'name'    => 'required|string|max:100',
@@ -323,7 +323,7 @@ class UserController extends Controller
             ]*/ );
 
 
-            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
             // dd($validator->messages());
             // echo '<pre>', var_dump($validator->messages()), '</pre>';
             // exit;
@@ -352,7 +352,7 @@ class UserController extends Controller
                 // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'   => 'error',
-                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (Check    $('#accountForm').submit();    in front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (Check    $('#accountForm').submit();    in front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
                 ]);
             }
 
@@ -367,13 +367,13 @@ class UserController extends Controller
 
 
 
-    // User Account Update Password HTML Form submission via AJAX. Check front/js/custom.js    
+    // User Account Update Password HTML Form submission via AJAX. Check front/js/custom.js
     public function userUpdatePassword(Request $request) {
         if ($request->ajax()) { // if the 'POST' request is coming from an AJAX call (update user details)
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
 
 
-            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators    
+            // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
                 // the 'name' HTML attribute of the request (the array key of the $request array) (ATTRIBUTE) => Validation Rules
                 'current_password'  => 'required',
@@ -386,7 +386,7 @@ class UserController extends Controller
             ]*/ );
 
 
-            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+            // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
             // dd($validator->messages());
             // echo '<pre>', var_dump($validator->messages()), '</pre>';
             // exit;
@@ -421,7 +421,7 @@ class UserController extends Controller
                 // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'   => 'error',
-                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (Check    $('#accountForm').submit();    in front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages    
+                    'errors' => $validator->messages() // we'll loop over the Validation Errors Messages array using jQuery to show them in the frontend (Check    $('#accountForm').submit();    in front/js/custom.js)    // Working With Error Messages: https://laravel.com/docs/9.x/validation#working-with-error-messages
                 ]);
             }
 

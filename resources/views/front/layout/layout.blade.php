@@ -33,7 +33,7 @@
             @if (!empty($meta_title))
                 {{ $meta_title }}
             @else
-                Laravel Multi Vendor E-commerce By Smaster.
+                Smaster | Shop and Sell online in UAE.
             @endif
 
         </title>

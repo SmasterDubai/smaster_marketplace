@@ -101,7 +101,7 @@
             </tr>
 
             <tr><td>&nbsp;</td></tr>
-            <tr><td>For any queries, you can contact us at <a href="mailto:info@MultiVendorEcommerceApplication.com.eg">info@MultiVendorEcommerceApplication.com.eg</a></td></tr>
+            <tr><td>For any queries, you can contact us at <a href="mailto:info@smaster.ae">info@smaster.ae</a></td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr><td>Regards,<br>Team Smaster marketplace.</td></tr>
             <tr><td>&nbsp;</td></tr>

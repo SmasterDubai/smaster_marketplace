@@ -131,7 +131,7 @@ $sections = \App\Models\Section::sections();
         <div class="container">
             <div class="row clearfix align-items-center">
 
-                <div class="col-lg-3 col-md-9 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="brand-logo text-lg-center">
 
 
@@ -143,14 +143,13 @@ $sections = \App\Models\Section::sections();
                     </div>
                 </div>
 
-
-                <div class="col-lg-6 u-d-none-lg">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><!--removed u-d-none-lg--->
 
                     {{-- Website Search Form (to search for all website products) --}}
                     <form class="form-searchbox" action="{{ url('/search-products') }}" method="get">
                         <label class="sr-only" for="search-landscape">Search</label>
                         <input id="search-landscape" type="text" class="text-field" placeholder="Search everything" name="search" @if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{ $_REQUEST['search'] }}" @endif> {{-- We use the "name" HTML attribute as a key/name for the "value" HTML attribute for submitting the Search Form. Check the "value" HTML attribute too inside the <option> HTML tag down below! --}} {{-- if the user uses the Search Form --}}
-                        <div class="select-box-position">
+                        <div class="select-box-position u-d-none-md">
                             <div class="select-box-wrapper select-hide">
                                 <label class="sr-only" for="select-category">Choose category for search</label>
                                 <select class="select-box" id="select-category" name="section_id">
@@ -173,9 +172,10 @@ $sections = \App\Models\Section::sections();
 
 
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <nav>
                         <ul class="mid-nav g-nav">
+
                             <li class="u-d-none-lg">
                                 <a href="{{ url('/') }}">
                                 <i class="ion ion-md-home u-c-brand"></i>
