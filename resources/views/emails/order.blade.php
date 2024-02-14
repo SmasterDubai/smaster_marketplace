@@ -41,12 +41,12 @@
                     @endforeach
                         <tr>
                             <td colspan="5" align="right">Shipping Charges</td>
-                            <td>INR {{ $orderDetails['shipping_charges'] }}</td>
+                            <td>AED {{ $orderDetails['shipping_charges'] }}</td>
                         </tr>
                         <tr>
                             <td colspan="5" align="right">Coupon Discount</td>
                             <td>
-                                INR
+                                AED
                                 @if ($orderDetails['coupon_amount'] > 0)
                                     {{ $orderDetails['coupon_amount'] }}
                                 @else
@@ -56,7 +56,7 @@
                         </tr>
                         <tr>
                             <td colspan="5" align="right">Grand Total</td>
-                            <td>INR {{ $orderDetails['grand_total'] }}</td>
+                            <td>AED {{ $orderDetails['grand_total'] }}</td>
                         </tr>
                 </table>
             </td></tr>

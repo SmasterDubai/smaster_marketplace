@@ -187,7 +187,7 @@ $(document).ready(function() {
     $('#registerForm').submit(function() { // When the registration <form> is submitted
 
         // Show our Preloader/Loader/Loading Page/Preloading Screen while the <form> is submitted
-        $('.loader').show();
+       // $('.loader').show(); // try .hide()
 
 
         var formdata = $(this).serialize(); // serialize() method comes in handy when submitting an HTML Form using an AJAX request / Ajax call, as it collects all the name/value pairs from the HTML Form input fields like: <input>, <textarea>, <select><option>, ... HTML elements of the <form> (instead of the heavy work of assigning an identifier/handle for every <input> and <textarea>, ... using an HTML 'id' or CSS 'class', and then getting the value for every one of them like this:    $('#username).val();    )    // serialize() jQuery method: https://www.w3schools.com/jquery/ajax_serialize.asp
@@ -199,21 +199,22 @@ $(document).ready(function() {
 
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, // X-CSRF-TOKEN: https://laravel.com/docs/9.x/csrf#csrf-x-csrf-token
-            url    : '/user/register', // check this route in web.php
+            url    : '/user/login-register', // check this route in web.php
             type   : 'POST',
             data   : formdata, // Sending name/value pairs to server with the AJAX request (AJAX call)
+            //Accept: application/json, // added as recomendation from laracast yet not functiong
             success: function(resp) { // if the AJAX request is successful
                 // Showing Validation Errors in the view (from the backend/server response of our AJAX request):
 
                 if (resp.type == 'error') { // if there're Validation Errors (login fails), show the Validation Error Messages (each of them under its respective <input> field)    // 'type' is sent as a PHP array key (in the HTTP response from the server (backend)) from inside the userRegister() method in Front/UserController.php
                     // Hide our Preloader/Loader/Loading Page/Preloading Screen when there's an error
-                    $('.loader').hide();
+                    $('.loader').show();
 
 
                     // Note: in HTML in front/users/login_register.blade.php, to conveniently display the errors by jQuery loop, the pattern must be like: register-x (e.g. register-mobile, regitster-email, ... in order for the jQuery loop to work. And x must be identical to the 'name' HTML attributes (e.g. the <input> with the    name='mobile'    HTML attribute must have a <p> with an id HTML attribute    id="register-mobile"    ) so that when the vaildation errors array are sent as a response to the AJAX request, they could conveniently/easily handled by the jQuery $.each() loop)
                     $.each(resp.errors, function(i, error) { // 'i' is the attribute (the 'name' HTML attribute) ('i' is the JavaScript object keys or the PHP array (sent from backend/server response from method inside controller) keys/indexes, and 'error' is the Validation Error ('error' is the JavaScript object values or the PHP array (sent from backend/server response from method inside controller) values    // $.each(): https://api.jquery.com/jquery.each/    // 'errors' is sent as a PHP array key (in the HTTP response from the server (backend)) from inside the userRegister() method in Front/UserController.php
-                        // console.log(i);     // The JavaScript ojbect keys   (properties names)  (the PHP array (sent from backend/server response from method inside controller) keys/indexes)
-                        // console.log(error); // The JavaScript ojbect values (properties values) (the PHP array (sent from backend/server response from method inside controller) values)
+                         //console.log(i);     // The JavaScript ojbect keys   (properties names)  (the PHP array (sent from backend/server response from method inside controller) keys/indexes)
+                         //console.log(error); // The JavaScript ojbect values (properties values) (the PHP array (sent from backend/server response from method inside controller) values)
 
 
                         $('#register-' + i).attr('style', 'color: red'); // I already did this in the HTML page in the <p> tags in the HTML in front/users/login_register.blade.php (    <p id="register-name" style="color: red"></p>    )    // This is the same as:    $('#register-' + i).css('color', 'red');    // Change the CSS color of the <p> tags
@@ -231,17 +232,26 @@ $(document).ready(function() {
 
                 } else if (resp.type == 'success') { // if there're no validation errors (login is successful), redirect to the Cart page    // 'type' is sent as a PHP array key (in the HTTP response from the server (backend)) from inside the userRegister() method in Front/UserController.php
                     // Hide our Preloader/Loader/Loading Page/Preloading Screen when the response is 'success'
+                    alert("Thank you for your comment!");
                     $('.loader').hide();
 
                     $('#register-success').attr('style', 'color: green'); // I already did this in the HTML page in the <p> tags in the HTML in front/users/login_register.blade.php (    <p id="login-name" style="color: red"></p>    )    // This is the same as:    $('#login-' + i).css('color', 'green');    // Change the CSS color of the <p> tags
                     $('#register-success').html(resp.message); // replace the <p> tags that we created inside the user registration <form> in front/users/login_register.blade.php depending on x in their 'id' HTML attributes 'login-x' (e.g. login-mobile, login-email, ...)
+                    window.location.href = resp.url; // added redirect for test purposes.
                 }
             },
             error  : function() { // if the AJAX request is unsuccessful
-                alert('Error');
+                alert('Ajax Error');
             }
+           // error: function(error){
+                // Handle error response
+
+            //    console.log("Error: " + error);
+            //}
         });
     });
+
+
 
 
 

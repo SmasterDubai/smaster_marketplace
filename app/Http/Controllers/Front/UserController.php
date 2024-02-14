@@ -19,7 +19,7 @@ class UserController extends Controller
 
     // User Registration (in front/users/login_register.blade.php) <form> submission using an AJAX request. Check front/js/custom.js
     public function userRegister(Request $request) {
-        if ($request->ajax()) { // if the request is coming via an AJAX call
+        if ($request->isMethod('post')) { // if the request is coming via an AJAX call ie $request->ajax() or switching with $request->isMethod('post')
             $data = $request->all(); // Getting the name/value pairs array that are sent from the AJAX request (AJAX call)
 
             // Validation    // Manually Creating Validators: https://laravel.com/docs/9.x/validation#manually-creating-validators
@@ -62,7 +62,7 @@ class UserController extends Controller
 
                 // The email message data/variables that will be passed in to the email view
                 $messageData = [
-                    'name'   => $data['name'],   // the user's name that they entered while submitting the registration form
+                   'name'   => $data['name'],   // the user's name that they entered while submitting the registration form
                     'email'  => $data['email'],  // the user's email that they entered while submitting the registration form
                     'code'   => base64_encode($data['email']) // We base64 code the user's $email and send it as a Route Parameter from resources/views/emails/confirmation.blade.php to the 'user/confirm/{code}' route in web.php, then it gets base64 de-coded again in confirmUser() method in Front/UserController.php    // We will use the opposite: base64_decode() in the confirmUser() method to decode the encoded string (encode X decode)
                 ];
